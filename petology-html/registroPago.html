@@ -10,14 +10,12 @@
     <div class="imagen">
         <img src="images/Pago-registrado.png" alt="Pago">
     </div>
-    <div class="boton">
-        <button id="regresarButton">Regresar</button>
-    </div>
+    <div class="checkout" style="cursor: pointer ;" id="pagoButton"><span>REGRESAR</span></div>
     <script>
         function regresar() {
             window.location.href = "index.html";
         }
-        document.getElementById("regresarButton").onclick = regresar;
+        document.getElementById("pagoButton").onclick = regresar;
     </script>
 </body>
 </html>
