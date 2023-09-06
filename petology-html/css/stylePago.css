@@ -152,3 +152,6 @@ body{
 .checkout:active {
   transform: scale(0.95);
 }
+#pagoButton{
+  text-align: center;
+}
