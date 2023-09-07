@@ -3,6 +3,11 @@
   * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
+/* El código anterior es un módulo de JavaScript que utiliza el patrón de definición de módulo
+universal (UMD) para definir un módulo llamado "bootstrap". Comprueba si el módulo se está
+utilizando en un entorno CommonJS (como Node.js) o en un entorno AMD (como RequireJS) y luego
+exporta el módulo en consecuencia. El módulo depende de las bibliotecas "jquery" y "popper.js", que
+se pasan como argumentos a la función de fábrica. */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery'), require('popper.js')) :
       typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
@@ -10,6 +15,10 @@
   }(this, function (exports, $, Popper) {
     'use strict';
   
+    /* El código anterior verifica si las variables `$` y `Popper` existen y si tienen una propiedad
+    llamada `default`. Si lo hacen, asigna el valor `default` a las variables `$` y `Popper`. Este
+    es un patrón común que se usa al importar módulos en JavaScript, donde la propiedad "default" se
+    usa para acceder a la funcionalidad principal del módulo. */
     $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
     Popper = Popper && Popper.hasOwnProperty('default') ? Popper['default'] : Popper;
   
@@ -23,12 +32,35 @@
       }
     }
   
+   /**
+    * La función _createClass es una función auxiliar que crea una clase con un prototipo específico y
+    * propiedades estáticas.
+    * @param Constructor - El parámetro Constructor es una función que se utilizará como constructor de
+    * la clase. Es responsable de crear nuevas instancias de la clase.
+    * @param protoProps - El parámetro `protoProps` es un objeto que contiene propiedades y métodos que
+    * se agregarán al prototipo de la clase que se está creando. Estas propiedades y métodos serán
+    * compartidos por todas las instancias de la clase.
+    * @param staticProps - El parámetro `staticProps` es un objeto que contiene propiedades y métodos
+    * que se agregan directamente a la función constructora, en lugar de a su prototipo. Se puede
+    * acceder a estas propiedades y métodos sin crear una instancia de la clase.
+    * @returns Se está devolviendo el "Constructor".
+    */
     function _createClass(Constructor, protoProps, staticProps) {
       if (protoProps) _defineProperties(Constructor.prototype, protoProps);
       if (staticProps) _defineProperties(Constructor, staticProps);
       return Constructor;
     }
   
+    /**
+     * La función `_defineProperty` se utiliza para definir o actualizar una propiedad en un objeto con
+     * la clave y el valor dados.
+     * @param obj - El parámetro `obj` es el objeto en el que se define o modifica la propiedad.
+     * @param key - El parámetro clave es el nombre de la propiedad que desea definir o establecer en
+     * el objeto.
+     * @param value - El parámetro `valor` es el valor que desea asignar a la propiedad.
+     * @returns el objeto modificado `obj` con la propiedad definida `key` y su correspondiente
+     * `value`.
+     */
     function _defineProperty(obj, key, value) {
       if (key in obj) {
         Object.defineProperty(obj, key, {
@@ -44,6 +76,13 @@
       return obj;
     }
   
+    /**
+     * La función `_objectSpread` se utiliza para fusionar varios objetos en un solo objeto.
+     * @param target - El parámetro `target` es el objeto que se modificará y al que se le agregarán
+     * propiedades.
+     * @returns el objeto de destino con las propiedades y valores de los objetos de origen
+     * distribuidos en él.
+     */
     function _objectSpread(target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i] != null ? arguments[i] : {};
@@ -133,8 +172,7 @@
       TRANSITION_END: 'bsTransitionEnd',
       getUID: function getUID(prefix) {
         do {
-          // eslint-disable-next-line no-bitwise
-          prefix += ~~(Math.random() * MAX_UID); // "~~" acts like a faster Math.floor() here
+          prefix += ~~(Math.random() * MAX_UID); // Esto ayuda en el caso de que el prefijo tenga un carácter que no sea alfanumérico.
         } while (document.getElementById(prefix));
   
         return prefix;
@@ -162,11 +200,11 @@
         var transitionDuration = $(element).css('transition-duration');
         var transitionDelay = $(element).css('transition-delay');
         var floatTransitionDuration = parseFloat(transitionDuration);
-        var floatTransitionDelay = parseFloat(transitionDelay); // Return 0 if element or transition duration is not found
+        var floatTransitionDelay = parseFloat(transitionDelay); // Devuelve 0 si no hay duración o demora
   
         if (!floatTransitionDuration && !floatTransitionDelay) {
           return 0;
-        } // If multiple durations are defined, take the first
+        } // Si la propiedad de transición está configurada, pero la duración es 0, entonces
   
   
         transitionDuration = transitionDuration.split(',')[0];
@@ -202,7 +240,7 @@
       findShadowRoot: function findShadowRoot(element) {
         if (!document.documentElement.attachShadow) {
           return null;
-        } // Can find the shadow root otherwise it'll return the document
+        } // Sirve para los navegadores que implementan sombras (Chrome, Firefox, etc.)
   
   
         if (typeof element.getRootNode === 'function') {
@@ -224,7 +262,7 @@
     };
     setTransitionEndSupport();
   
-  
+    //Esto nos ayudar en el caso de que el prefijo tenga un carácter que no sea alfanumérico.
     var NAME = 'alert';
     var VERSION = '4.3.1';
     var DATA_KEY = 'bs.alert';
@@ -247,6 +285,10 @@
   
     };
   
+    /* El código anterior define una clase de JavaScript llamada "Alerta" que representa un componente
+    de alerta. La clase tiene métodos para cerrar la alerta, eliminar la alerta, obtener el elemento
+    raíz de la alerta, desencadenar un evento de cierre, eliminar el elemento de alerta y destruir
+    el elemento de alerta. */
     var Alert =
 
       function () {
@@ -373,6 +415,10 @@
     };
   
   
+    /* El código anterior define una clase de JavaScript llamada "Botón" que representa un elemento de
+    botón. Proporciona métodos para alternar el estado del botón, deshacerse del botón y una
+    interfaz jQuery para interactuar con el botón. La clase también define varias constantes,
+    selectores y eventos relacionados con botones. */
     var NAME$1 = 'button';
     var VERSION$1 = '4.3.1';
     var DATA_KEY$1 = 'bs.button';
@@ -510,6 +556,11 @@
   
  
   
+    /* El código anterior implementa un componente de carrusel en JavaScript. Define una clase Carrusel
+    con métodos para navegar a la diapositiva anterior o siguiente, pausar y reanudar el carrusel y
+    saltar a una diapositiva específica. También incluye detectores de eventos para entrada de
+    teclado, desplazamiento del mouse y gestos táctiles. El código maneja gestos de deslizamiento,
+    establece indicadores activos para la diapositiva actual y activa eventos de diapositiva. */
     var NAME$2 = 'carousel';
     var VERSION$2 = '4.3.1';
     var DATA_KEY$2 = 'bs.carousel';
@@ -1428,6 +1479,11 @@
   
 
   
+    /* El código anterior implementa un componente desplegable en JavaScript utilizando el marco
+    Bootstrap. Define una clase desplegable que maneja alternar, mostrar, ocultar y actualizar el
+    menú desplegable. También incluye detectores de eventos para interacciones de teclado y eventos
+    de clic. El código también proporciona una interfaz de complemento jQuery para facilitar el uso
+    del componente desplegable. */
     var NAME$4 = 'dropdown';
     var VERSION$4 = '4.3.1';
     var DATA_KEY$4 = 'bs.dropdown';
